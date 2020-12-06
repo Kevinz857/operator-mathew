@@ -1,0 +1,7 @@
+apiVersion: mathew.cloudnative.cool/v1
+kind: Mathew
+metadata:
+  name: example-mathew
+spec:
+  # Add fields here
+  size: 3

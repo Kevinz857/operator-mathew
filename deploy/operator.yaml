@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: operator-mathew
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: operator-mathew
+  template:
+    metadata:
+      labels:
+        name: operator-mathew
+    spec:
+      serviceAccountName: operator-mathew
+      containers:
+        - name: operator-mathew
+          # Replace this with the built image name
+          image: REPLACE_IMAGE
+          command:
+          - operator-mathew
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "operator-mathew"
